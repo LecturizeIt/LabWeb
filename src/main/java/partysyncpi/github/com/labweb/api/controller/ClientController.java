@@ -35,4 +35,16 @@ public class ClientController {
         listaDeClientes.add(novoCliente);
         return listaDeClientes.get(0);
     }
+
+
+
+
+
+
+
+
+    @DeleteMapping("clientes/{id}/delete")
+    public String deleteCliente(@PathVariable("id") int id) {
+        return "Cliente excluido com sucesso id=> " + id;
+    }
 }
