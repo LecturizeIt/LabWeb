@@ -1,10 +1,7 @@
 package partysyncpi.github.com.labweb.api.controller;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import partysyncpi.github.com.labweb.domain.model.Client;
 
 import java.util.ArrayList;
@@ -28,5 +25,14 @@ public class ClientController {
         lista.add(new Client (2L, "Andre da Silva", "Casa dele"));
         lista.add(new Client (3L, "Bingor da Silva", "Casa dele"));
         return lista;
+    }
+
+    @PostMapping("/client")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Client cadastraCliente(@RequestBody Client cliente) {
+        List<Client> listaDeClientes = new ArrayList<>();
+        Client novoCliente = new Client(1L, cliente.getName(), cliente.getAddress());
+        listaDeClientes.add(novoCliente);
+        return listaDeClientes.get(0);
     }
 }
