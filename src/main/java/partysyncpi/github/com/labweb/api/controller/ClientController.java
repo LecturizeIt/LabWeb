@@ -28,9 +28,22 @@ public class ClientController {
     }
 
     @PutMapping("/clients/{id}/update")
-    public Client atualizaClient(@RequestBody Client client, @PathVariable("id") Long id){
+    public Client updateClient(@RequestBody Client client, @PathVariable("id") Long id){
         Client updatedClient = new Client(id, client.getName(), client.getAddress());
         return  updatedClient;
     }
 
+    @PostMapping("/client")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Client cadastraCliente(@RequestBody Client cliente) {
+        List<Client> listaDeClientes = new ArrayList<>();
+        Client novoCliente = new Client(1L, cliente.getName(), cliente.getAddress());
+        listaDeClientes.add(novoCliente);
+        return listaDeClientes.get(0);
+    }
+
+    @DeleteMapping("clientes/{id}/delete")
+    public String deleteCliente(@PathVariable("id") int id) {
+        return "Cliente excluido com sucesso id=> " + id;
+    }
 }
